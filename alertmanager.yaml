@@ -7,16 +7,15 @@ metadata:
 data:
     config.yml: |-
     global:
-      slack_api_url: 'https://hooks.slack.com/services/T029R6UJ3A9/B029UDMPUSX/NAWDIF71JjSRw23FWqxQwMz'
+    - slack_api_url: 'https://hooks.slack.com/services/T029R6UJ3A9/B029UDMPUSX/NAWDIF71JjSRw23FWqxQwMz'
     route:
     - receiver: 'slack-notifications'
-      group_by: [alertname, datacenter, app]
+      group_by: [alertname]
       group_wait: 5s
     receivers:
     - name: 'slack-notifications'
       slack_configs:
       - channel: '#general'
-        # Template for the text field in Slack messages.
         text: '{{ .GroupLabels.app }}/{{ .GroupLabels.alertname }}'
 ---
 apiVersion: apps/v1
