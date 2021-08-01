@@ -46,13 +46,13 @@ data:
     groups:
     - name: devopscube demo alert
       rules:
-      - alert: High Pod Memory
-        expr: sum(container_memory_usage_bytes) > 1
-        for: 1m
+      - alert: High Pod CPU usage
+        expr: rate(container_cpu_user_seconds_total[30s]) * 100 > 20
+        for: 30s
         labels:
           severity: slack
         annotations:
-          summary: High Memory Usage
+          summary: High Pod CPU usage
   prometheus.yml: |-
     global:
       scrape_interval: 5s

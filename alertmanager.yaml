@@ -5,27 +5,26 @@ metadata:
   name: alertmanager-config
   namespace: monitoring
 data:
-  alertmanager.yml: |-
+  config.yml: |-
     global: {}
     route:
-      group_by: ['alertname', 'cluster', 'service']
-      group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 3h
-      receiver: slack_prometheus
+      receiver: 'slack_prometheus'
+      group_by: ['alertname', 'priority']
+      group_wait: 10s
+      repeat_interval: 20s
       routes:
-        - receiver: slack_alert
+        - receiver: slack_prometheus
           match:
             severity: slack
           group_wait: 10s
           repeat_interval: 20s
     receivers:
-    - name: 'slack_prometheus'
+    - name: slack_prometheus
       slack_configs:
-      - api_url: 'https://hooks.slack.com/services/T029R6UJ3A9/B029UDMPUSX/NAWDIF71JjSRw23FWqxQwMz'
-          channel: '#general'
-          title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
-          text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
+      - api_url: https://hooks.slack.com/services/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
+        channel: '#general'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
 ---
 apiVersion: apps/v1
 kind: Deployment
