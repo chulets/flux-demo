@@ -7,7 +7,7 @@ metadata:
 data:
     config.yml: |-
     global:
-    - slack_api_url: 'https://hooks.slack.com/services/T029R6UJ3A9/B029UDMPUSX/NAWDIF71JjSRw23FWqxQwMz'
+      slack_api_url: 'https://hooks.slack.com/services/T029R6UJ3A9/B029UDMPUSX/NAWDIF71JjSRw23FWqxQwMz'
     route:
     - receiver: 'slack-notifications'
       group_by: [alertname]
