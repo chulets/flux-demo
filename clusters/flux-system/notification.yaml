@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   type: slack
-  channel: jenkins_chulets
+  channel: general
   secretRef:
     name: slack-url
 ---
