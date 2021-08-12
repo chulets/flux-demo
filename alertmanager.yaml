@@ -21,7 +21,7 @@ data:
     receivers:
     - name: slack_prometheus
       slack_configs:
-      - api_url: https://hooks.slack.com/services/XXX
+      - api_url: https://hooks.slack.com/services/XXXX
         channel: '#general'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
